@@ -1,0 +1,14 @@
+@import "../helpers/space";
+
+.copy.variant--box {
+  --paddingTop: #{space(3)};
+  --paddingBottom: #{space(3)};
+
+  background-color: var(--background-light);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--borderRadius);
+  overflow: hidden;
+
+  padding-top: var(--paddingTop);
+  padding-bottom: var(--paddingBottom);
+}

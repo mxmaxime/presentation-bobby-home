@@ -1,0 +1,143 @@
+@import "../helpers/space";
+@import "../tools/_responsive.scss";
+
+html {
+  /* border-box box model allows us to add padding and border to our elements
+  without increasing their size. */
+  box-sizing: border-box;
+}
+
+/**
+ * We inherit box-sizing from our <html> selector.
+ * Apparently this is a bit better than applying it directly here.
+ */
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+.l-row {
+  --rowLayoutGapLarge: 2;
+
+  display: grid;
+  grid: auto/minmax(0, 1fr);
+  grid-gap: calc(var(--rowLayoutGapLarge) * var(--space));
+}
+
+@include up($medium) {
+  .l-row {
+    --rowLayoutGapLarge: 4;
+  }
+}
+
+@include up($large) {
+  .l-row {
+    --rowLayoutGapLarge: 5;
+  }
+}
+
+
+.l-container {
+  width: 100%;
+  padding-left: var(--columnPaddingNormal);
+  padding-right: var(--columnPaddingNormal);
+
+  /**
+   * Idea taken from Foundation framework.
+   * Thanks to this, I don't have to create many breakpoints to
+   * size my container.
+   */
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.l-mini-container {
+  @extend .l-container;
+  max-width: 31rem;
+}
+
+/**
+ * Stacks
+ */
+%l-stack,
+.l-stack {
+  --gap: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: flex-start;
+  gap: calc(var(--gap) * var(--space));
+}
+
+.l-section {
+    --gap: 5;
+    margin: calc(var(--gap) * var(--space)) 0;
+}
+
+.l-stack-bottom-separator {
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: calc(var(--gap) * var(--space));
+}
+
+/**
+ * Spaces
+ */
+
+@for $i from 0 to 4 {
+  .l-m#{$i} {
+    margin: space($i);
+  }
+
+  .l-p#{$i} {
+    padding: space($i);
+  }
+
+  .l-mt#{$i} {
+    margin-top: space($i);
+  }
+
+  .l-pt#{$i} {
+    padding-top: space($i);
+  }
+
+  .l-mb#{$i} {
+    margin-bottom: space($i);
+  }
+
+  .l-pb#{$i} {
+    padding-bottom: space($i);
+  }
+
+  .l-ml#{$i} {
+    margin-left: space($i);
+  }
+
+  .l-pl#{$i} {
+    padding-left: space($i);
+  }
+
+  .l-mr#{$i} {
+    margin-right: space($i);
+  }
+
+  .l-pr#{$i} {
+    padding-right: space($i);
+  }
+
+  .l-plr#{$i} {
+    padding: 0 (space($i));
+  }
+
+  .l-mlr#{$i} {
+    margin: 0 (space($i));
+  }
+
+  .l-ptb#{$i} {
+    padding: (space($i)) 0;
+  }
+
+  .l-mtb#{$i} {
+    margin: (space($i)) 0;
+  }
+
+}
